@@ -3,586 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora y Práctica de Fracciones</title>
+    <title>Una pregunta importante...</title>
     <style>
-        :root {
-            --primary: #4F46E5;
-            --primary-hover: #4338CA;
-            --bg-color: #F3F4F6;
-            --card-bg: #FFFFFF;
-            --text-main: #1F2937;
-            --text-muted: #6B7280;
-            --border-color: #E5E7EB;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #ffe6e6; 
+            margin: 0; 
+            overflow: hidden; 
         }
-
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+        .card { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            text-align: center; 
+            max-width: 400px; 
+            width: 90%; 
+            z-index: 10; 
         }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 20px;
+        h1 { color: #ff4d4d; margin-bottom: 10px; }
+        p { color: #555; margin-bottom: 25px; }
+        .btn-container {
             display: flex;
             justify-content: center;
+            gap: 15px;
         }
-
-        .container {
-            max-width: 650px;
-            width: 100%;
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .tabs {
-            display: flex;
-            background: var(--border-color);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            background: transparent;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .tab-btn.active {
-            background: var(--card-bg);
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-            padding: 20px;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            margin-top: 0;
-            color: var(--text-main);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        /* Pantalla y Teclado */
-        .display-screen {
-            width: 100%;
-            height: 60px;
-            background: #f9fafb;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0 15px;
-            font-size: 24px;
+        .btn { 
+            padding: 12px 25px; 
+            font-size: 16px; 
             font-weight: bold;
-            letter-spacing: 2px;
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: 0.2s; 
         }
-
-        .periodic {
-            text-decoration: overline;
-            color: var(--primary);
+        .btn-yes { 
+            background-color: #ff4d4d; 
+            color: white; 
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
         }
-
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+        .btn-yes:hover { 
+            background-color: #ff3333; 
+            transform: scale(1.05); 
         }
-
-        .key {
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            background: #E5E7EB;
-            cursor: pointer;
-            transition: 0.2s;
+        .btn-no { 
+            background-color: #e0e0e0; 
+            color: #333; 
+            position: relative; 
         }
-
-        .key:hover { background: #D1D5DB; }
-        .key.action { background: var(--primary); color: white; }
-        .key.action:hover { background: var(--primary-hover); }
-        .key.special { background: #FCD34D; color: #92400E; }
-
-        /* Operaciones Grid */
-        .op-grid {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+        #step2 { display: none; }
+        .form-group { 
+            margin-bottom: 15px; 
+            text-align: left; 
         }
-
-        .fraction-input {
-            display: flex;
-            flex-direction: column;
-            width: 60px;
-            gap: 5px;
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            color: #555; 
+            font-weight: 600; 
+            font-size: 14px;
         }
-
-        .fraction-input input {
-            width: 100%;
-            text-align: center;
-            padding: 8px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+        input, select { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-family: inherit;
         }
-
-        .fraction-line {
-            height: 2px;
-            background: var(--text-main);
-            width: 100%;
-        }
-
-        select, button.calc-btn {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        button.calc-btn {
-            background: var(--primary);
-            color: white;
-            cursor: pointer;
-            border: none;
-            width: 100%;
-        }
-
-        .result-box {
-            padding: 15px;
-            background: #ECFDF5;
-            color: #065F46;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            min-height: 55px;
-            margin-top: 10px;
-        }
-
-        /* Ejercicios */
-        .exercise-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .exercise-controls select {
-            flex: 1;
-        }
-
-        .exercise-box {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            background: #F9FAFB;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px dashed var(--primary);
-        }
-        
-        .feedback {
-            text-align: center;
-            margin-top: 10px;
-            font-weight: bold;
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ff4d4d;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('calculadora')">Calculadora</button>
-        <button class="tab-btn" onclick="switchTab('ejercicios')">Ejercicios</button>
+    <div class="card" id="step1">
+        <h1>¿Querés salir conmigo?</h1>
+        <p>Tengo una propuesta que no podés rechazar...</p>
+        <div class="btn-container">
+            <button class="btn btn-yes" onclick="showStep2()">¡Sí, obvio!</button>
+            <button class="btn btn-no" id="btnNo">Mmm, no</button>
+        </div>
     </div>
 
-    <!-- PESTAÑA: CALCULADORA -->
-    <div id="calculadora" class="tab-content active">
-        
-        <h2>Decimal a Fracción (con Periódicos)</h2>
-        <div class="display-screen" id="decDisplay">0</div>
-        
-        <div class="keyboard">
-            <button class="key" onclick="typeKey('7')">7</button>
-            <button class="key" onclick="typeKey('8')">8</button>
-            <button class="key" onclick="typeKey('9')">9</button>
-            <button class="key special" onclick="typeKey('periodo')" title="Iniciar Período (Techito)">‾ Techo</button>
-            
-            <button class="key" onclick="typeKey('4')">4</button>
-            <button class="key" onclick="typeKey('5')">5</button>
-            <button class="key" onclick="typeKey('6')">6</button>
-            <button class="key action" onclick="clearDec()">C</button>
-
-            <button class="key" onclick="typeKey('1')">1</button>
-            <button class="key" onclick="typeKey('2')">2</button>
-            <button class="key" onclick="typeKey('3')">3</button>
-            <button class="key action" onclick="convertirDecimal()" style="grid-row: span 2;">=</button>
-
-            <button class="key" onclick="typeKey('0')" style="grid-column: span 2;">0</button>
-            <button class="key" onclick="typeKey('.')">.</button>
+    <div class="card" id="step2">
+        <h1>¡Genial! Armemos el plan 🎉</h1>
+        <div class="form-group">
+            <label for="fecha">¿Qué día te queda bien?</label>
+            <input type="date" id="fecha" required>
         </div>
-        <div class="result-box" id="decResult">Fracción: --</div>
-
-        <br>
-        <h2>Operaciones con Fracciones</h2>
-        <div class="op-grid">
-            <div class="fraction-input">
-                <input type="number" id="num1" placeholder="N">
-                <div class="fraction-line"></div>
-                <input type="number" id="den1" placeholder="D">
-            </div>
-            
-            <select id="operador" onchange="checkSpecialOps()">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">x</option>
-                <option value="/">÷</option>
-                <option value="^">Potencia (n)</option>
-                <option value="root">Raíz (√)</option>
+        <div class="form-group">
+            <label for="hora">¿A qué hora nos vemos?</label>
+            <input type="time" id="hora" required>
+        </div>
+        <div class="form-group">
+            <label for="plan">¿Qué hacemos por Río Gallegos?</label>
+            <select id="plan">
+                <option value="Pasear por la Ría y tomar unos mates">Pasear por la Ría y tomar unos mates</option>
+                <option value="Ir por unas buenas hamburguesas y papas">Ir por unas buenas hamburguesas y papas</option>
+                <option value="Jugar una partida de ajedrez en algún barcito">Jugar una partida de ajedrez en algún barcito</option>
+                <option value="Ir a tomar un café o un helado por el centro">Ir a tomar un café o un helado por el centro</option>
             </select>
-
-            <div class="fraction-input" id="frac2-container">
-                <input type="number" id="num2" placeholder="N">
-                <div class="fraction-line"></div>
-                <input type="number" id="den2" placeholder="D">
-            </div>
         </div>
-        <button class="calc-btn" onclick="calcularFracciones()">Calcular Operación</button>
-        <div class="result-box" id="fracResult">Resultado: --</div>
-
+        <button class="btn btn-yes" style="width: 100%; margin-top: 10px;" onclick="sendWhatsApp()">Confirmar cita ❤️</button>
     </div>
 
-    <!-- PESTAÑA: EJERCICIOS -->
-    <div id="ejercicios" class="tab-content">
-        <h2>Práctica Interactiva</h2>
-        
-        <div class="exercise-controls">
-            <select id="tipoModalidad">
-                <option value="simples">Operaciones Simples</option>
-                <option value="combinados">Ejercicios Combinados (4 términos)</option>
-            </select>
-            <button class="calc-btn" onclick="generarEjercicio()">Generar</button>
-        </div>
-        
-        <div class="exercise-box" id="exerciseDisplay">Presiona "Generar" para empezar</div>
-        
-        <div class="op-grid" id="answerArea" style="display:none;">
-            <span>Tu respuesta:</span>
-            <div class="fraction-input">
-                <input type="number" id="ansNum" placeholder="N">
-                <div class="fraction-line"></div>
-                <input type="number" id="ansDen" placeholder="D">
-            </div>
-            <button class="calc-btn" style="width: auto;" onclick="verificarRespuesta()">Comprobar</button>
-        </div>
-        <div class="feedback" id="feedbackMsg"></div>
-    </div>
-</div>
+    <script>
+        const btnNo = document.getElementById('btnNo');
 
-<script>
-    // --- FUNCIONES MATEMÁTICAS GLOBALES ---
-    function gcd(a, b) {
-        a = Math.abs(a);
-        b = Math.abs(b);
-        return b === 0 ? a : gcd(b, a % b);
-    }
-
-    function simplificarFrac(n, d) {
-        let divisor = gcd(n, d);
-        let num = n / divisor;
-        let den = d / divisor;
-        if (den < 0) { num *= -1; den *= -1; }
-        return { n: num, d: den };
-    }
-
-    // --- LÓGICA DE TABS ---
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-
-    // --- LÓGICA DECIMAL A FRACCIÓN (CALCULADORA) ---
-    let decNormal = "";
-    let decPeriodico = "";
-    let isPeriodic = false;
-
-    function updateDecDisplay() {
-        const display = document.getElementById('decDisplay');
-        if (decNormal === "" && decPeriodico === "") {
-            display.innerHTML = "0";
-            return;
-        }
-        let html = decNormal;
-        if (decPeriodico !== "") {
-            html += `<span class="periodic">${decPeriodico}</span>`;
-        } else if (isPeriodic) {
-            html += `<span class="periodic">_</span>`;
-        }
-        display.innerHTML = html;
-    }
-
-    function typeKey(key) {
-        if (key === 'periodo') {
-            if (!decNormal.includes('.')) decNormal += '.'; 
-            isPeriodic = true;
-        } else if (key === '.') {
-            if (!decNormal.includes('.')) decNormal += '.';
-        } else {
-            if (isPeriodic) decPeriodico += key;
-            else decNormal += key;
-        }
-        updateDecDisplay();
-    }
-
-    function clearDec() {
-        decNormal = "";
-        decPeriodico = "";
-        isPeriodic = false;
-        document.getElementById('decResult').innerText = "Fracción: --";
-        updateDecDisplay();
-    }
-
-    function convertirDecimal() {
-        if (decNormal === "" && decPeriodico === "") return;
-        
-        let numStr = decNormal || "0";
-        let perStr = decPeriodico;
-        let partes = numStr.split('.');
-        let entero = partes[0] || "0";
-        let noPeriodico = partes[1] || "";
-        let numerador, denominador;
-
-        if (perStr === "") {
-            let decimalLength = noPeriodico.length;
-            numerador = parseInt(entero + noPeriodico);
-            denominador = Math.pow(10, decimalLength);
-        } else {
-            let numCompleto = parseInt(entero + noPeriodico + perStr);
-            let numSinPeriodo = parseInt(entero + noPeriodico);
-            numerador = numCompleto - numSinPeriodo;
-            let nueves = "9".repeat(perStr.length);
-            let ceros = "0".repeat(noPeriodico.length);
-            denominador = parseInt(nueves + ceros);
-        }
-
-        if (numerador === 0) {
-            document.getElementById('decResult').innerText = "Fracción: 0";
-            return;
-        }
-
-        let frac = simplificarFrac(numerador, denominador);
-        document.getElementById('decResult').innerText = `Fracción: ${frac.n} / ${frac.d}`;
-    }
-
-    // --- LÓGICA OPERACIONES FRACCIONES (CALCULADORA) ---
-    function checkSpecialOps() {
-        const op = document.getElementById('operador').value;
-        const frac2 = document.getElementById('frac2-container');
-        if (op === 'root') {
-            frac2.style.display = 'none';
-        } else if (op === '^') {
-            frac2.style.display = 'flex';
-            document.getElementById('den2').style.display = 'none';
-            document.getElementById('num2').placeholder = "Exp";
-        } else {
-            frac2.style.display = 'flex';
-            document.getElementById('den2').style.display = 'block';
-            document.getElementById('num2').placeholder = "N";
-        }
-    }
-
-    function calcularFracciones() {
-        let n1 = parseInt(document.getElementById('num1').value);
-        let d1 = parseInt(document.getElementById('den1').value);
-        let op = document.getElementById('operador').value;
-        let n2 = parseInt(document.getElementById('num2').value) || 1;
-        let d2 = parseInt(document.getElementById('den2').value) || 1;
-
-        if (isNaN(n1) || isNaN(d1)) return;
-        let numRes, denRes;
-
-        switch (op) {
-            case '+': numRes = (n1*d2) + (n2*d1); denRes = d1*d2; break;
-            case '-': numRes = (n1*d2) - (n2*d1); denRes = d1*d2; break;
-            case '*': numRes = n1 * n2; denRes = d1 * d2; break;
-            case '/': numRes = n1 * d2; denRes = d1 * n2; break;
-            case '^': 
-                numRes = Math.pow(n1, n2); 
-                denRes = Math.pow(d1, n2); 
-                break;
-            case 'root': 
-                numRes = Math.sqrt(n1); 
-                denRes = Math.sqrt(d1); 
-                if(!Number.isInteger(numRes) || !Number.isInteger(denRes)) {
-                    document.getElementById('fracResult').innerText = "Resultado: Raíz no exacta";
-                    return;
-                }
-                break;
-        }
-
-        let frac = simplificarFrac(numRes, denRes);
-        let textRes = frac.d === 1 ? frac.n : `${frac.n} / ${frac.d}`;
-        document.getElementById('fracResult').innerText = `Resultado: ${textRes}`;
-    }
-
-    // --- MOTOR DE FRACCIONES PARA EJERCICIOS ---
-    let currentAnswer = { n: 0, d: 1 };
-
-    function sumarF(f1, f2) { return simplificarFrac((f1.n * f2.d) + (f2.n * f1.d), f1.d * f2.d); }
-    function restarF(f1, f2) { return simplificarFrac((f1.n * f2.d) - (f2.n * f1.d), f1.d * f2.d); }
-    function multF(f1, f2) { return simplificarFrac(f1.n * f2.n, f1.d * f2.d); }
-    function divF(f1, f2) { return simplificarFrac(f1.n * f2.d, f1.d * f2.n); }
-    
-    function operarF(f1, f2, op) {
-        if(op === '+') return sumarF(f1, f2);
-        if(op === '-') return restarF(f1, f2);
-        if(op === '*') return multF(f1, f2);
-        if(op === '/') return divF(f1, f2);
-    }
-
-    function generarTerminoMixto() {
-        let r = Math.random();
-        if (r < 0.4) {
-            // Fracción simple
-            let n = Math.floor(Math.random() * 4) + 1;
-            let d = Math.floor(Math.random() * 4) + 2;
-            return { str: `${n}/${d}`, val: { n: n, d: d } };
-        } else if (r < 0.7) {
-            // Decimal exacto (convertible fácil)
-            const decs = [
-                { str: '0.5', val: {n: 1, d: 2} }, { str: '0.25', val: {n: 1, d: 4} },
-                { str: '0.75', val: {n: 3, d: 4} }, { str: '1.5', val: {n: 3, d: 2} },
-                { str: '0.2', val: {n: 1, d: 5} }
-            ];
-            return decs[Math.floor(Math.random() * decs.length)];
-        } else {
-            // Decimal periódico
-            const pers = [
-                { str: '0.<span class="periodic">3</span>', val: {n: 1, d: 3} },
-                { str: '0.<span class="periodic">6</span>', val: {n: 2, d: 3} },
-                { str: '1.<span class="periodic">3</span>', val: {n: 4, d: 3} },
-                { str: '0.1<span class="periodic">6</span>', val: {n: 1, d: 6} }
-            ];
-            return pers[Math.floor(Math.random() * pers.length)];
-        }
-    }
-
-    function generarEjercicio() {
-        document.getElementById('answerArea').style.display = 'flex';
-        document.getElementById('ansNum').value = '';
-        document.getElementById('ansDen').value = '';
-        document.getElementById('feedbackMsg').innerText = '';
-        
-        let modalidad = document.getElementById('tipoModalidad').value;
-        let displayStr = "";
-
-        if (modalidad === 'simples') {
-            // Lógica anterior de ejercicios simples
-            let tipos = ['dec-exacto', 'dec-periodico', 'suma', 'multiplicacion'];
-            let tipo = tipos[Math.floor(Math.random() * tipos.length)];
+        // La broma del programador: el botón "No" huye del cursor
+        btnNo.addEventListener('mouseover', () => {
+            // Calculamos el espacio disponible evitando que el botón se salga de la pantalla
+            const maxX = window.innerWidth - btnNo.offsetWidth - 20;
+            const maxY = window.innerHeight - btnNo.offsetHeight - 20;
             
-            if (tipo === 'dec-exacto') {
-                let t = generarTerminoMixto();
-                while(t.str.includes('<span')) t = generarTerminoMixto(); // Forzar no periódico
-                displayStr = `Convierte a fracción irreducible: ${t.str}`;
-                currentAnswer = t.val;
-            } 
-            else if (tipo === 'dec-periodico') {
-                let entero = Math.floor(Math.random() * 3);
-                let periodo = Math.floor(Math.random() * 8) + 1;
-                displayStr = `Convierte a fracción: ${entero}.<span class="periodic">${periodo}</span>`;
-                let numerador = parseInt(`${entero}${periodo}`) - entero;
-                currentAnswer = simplificarFrac(numerador, 9);
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        });
+
+        function showStep2() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }
+
+        function sendWhatsApp() {
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+            const plan = document.getElementById('plan').value;
+
+            if(!fecha || !hora) {
+                alert("¡Completá la fecha y la hora para que la cita sea oficial!");
+                return;
             }
-            else {
-                let t1 = generarTerminoMixto();
-                let t2 = generarTerminoMixto();
-                let op = tipo === 'suma' ? '+' : '*';
-                let sym = op === '+' ? '+' : 'x';
-                displayStr = `Resuelve: ${t1.str} ${sym} ${t2.str}`;
-                currentAnswer = operarF(t1.val, t2.val, op);
-            }
-        } 
-        else if (modalidad === 'combinados') {
-            // Lógica nueva: 4 términos, mezcla de decimales, fracciones y operadores
-            let t1 = generarTerminoMixto();
-            let t2 = generarTerminoMixto();
-            let t3 = generarTerminoMixto();
-            let t4 = generarTerminoMixto();
 
-            const ops = ['+', '-', '*', '/'];
-            let op1 = ops[Math.floor(Math.random() * 4)];
-            let op2 = ops[Math.floor(Math.random() * 2)]; // Mantenemos el centro sumando o restando para agrupar fácil
-            let op3 = ops[Math.floor(Math.random() * 4)];
+            // Formatear la fecha para que se lea mejor
+            const fechaFormateada = new Date(fecha + 'T00:00:00').toLocaleDateString('es-AR', {
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric'
+            });
 
-            // Prevenir divisiones por cero accidentales
-            while(op1 === '/' && t2.val.n === 0) t2 = generarTerminoMixto();
-            while(op3 === '/' && t4.val.n === 0) t4 = generarTerminoMixto();
-
-            let valIzq = operarF(t1.val, t2.val, op1);
-            let valDer = operarF(t3.val, t4.val, op3);
-            currentAnswer = operarF(valIzq, valDer, op2);
-
-            let s1 = op1 === '*' ? 'x' : (op1 === '/' ? '÷' : op1);
-            let s2 = op2 === '*' ? 'x' : (op2 === '/' ? '÷' : op2);
-            let s3 = op3 === '*' ? 'x' : (op3 === '/' ? '÷' : op3);
-
-            // Generamos la vista con paréntesis para guiar la jerarquía visualmente
-            displayStr = `Resuelve:<br> <br> ( ${t1.str} &nbsp;${s1}&nbsp; ${t2.str} ) &nbsp;&nbsp;${s2}&nbsp;&nbsp; ( ${t3.str} &nbsp;${s3}&nbsp; ${t4.str} )`;
+            // Armar el mensaje para WhatsApp (los %0A son saltos de línea)
+            const mensaje = `¡Hola! Acepto la cita. 🥰%0A%0A📅 Fecha: ${fechaFormateada}%0A⏰ Hora: ${hora} hs%0A📍 Plan: ${plan}%0A%0A¡Nos vemos!`;
+            
+            // Tu número con el código de país de Argentina (549)
+            const numero = "5493755594592"; 
+            const url = `https://wa.me/${numero}?text=${mensaje}`;
+            
+            // Redirigir a WhatsApp
+            window.open(url, '_blank');
         }
-        
-        document.getElementById('exerciseDisplay').innerHTML = displayStr;
-    }
-
-    function verificarRespuesta() {
-        let uN = parseInt(document.getElementById('ansNum').value);
-        let uD = parseInt(document.getElementById('ansDen').value) || 1;
-        
-        let msgBox = document.getElementById('feedbackMsg');
-        
-        // Manejar caso donde el usuario no ingresó nada
-        if(isNaN(uN)) {
-            msgBox.innerHTML = "Por favor, ingresa un número. ⚠️";
-            msgBox.style.color = "#D97706";
-            return;
-        }
-
-        // Manejar negativos: si ingresa -1/2, es válido como 1/-2
-        let ansUsuario = simplificarFrac(uN, uD);
-
-        if (ansUsuario.n === currentAnswer.n && ansUsuario.d === currentAnswer.d) {
-            msgBox.innerHTML = "¡Excelente! Respuesta correcta. ✅";
-            msgBox.style.color = "green";
-        } else {
-            let correctStr = currentAnswer.d === 1 ? currentAnswer.n : `${currentAnswer.n}/${currentAnswer.d}`;
-            msgBox.innerHTML = `Sigue intentando. (La respuesta irreducible es ${correctStr}) ❌`;
-            msgBox.style.color = "red";
-        }
-    }
-</script>
+    </script>
 </body>
 </html>
