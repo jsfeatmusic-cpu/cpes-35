@@ -3,167 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Una pregunta importante...</title>
-    <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            background-color: #ffe6e6; 
-            margin: 0; 
-            overflow: hidden; 
-        }
-        .card { 
-            background: white; 
-            padding: 2.5rem; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            text-align: center; 
-            max-width: 400px; 
-            width: 90%; 
-            z-index: 10; 
-        }
-        h1 { color: #ff4d4d; margin-bottom: 10px; }
-        p { color: #555; margin-bottom: 25px; }
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .btn { 
-            padding: 12px 25px; 
-            font-size: 16px; 
-            font-weight: bold;
-            border: none; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            transition: 0.2s; 
-        }
-        .btn-yes { 
-            background-color: #ff4d4d; 
-            color: white; 
-            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
-        }
-        .btn-yes:hover { 
-            background-color: #ff3333; 
-            transform: scale(1.05); 
-        }
-        .btn-no { 
-            background-color: #e0e0e0; 
-            color: #333; 
-            position: relative; 
-        }
-        #step2 { display: none; }
-        .form-group { 
-            margin-bottom: 15px; 
-            text-align: left; 
-        }
-        label { 
-            display: block; 
-            margin-bottom: 5px; 
-            color: #555; 
-            font-weight: 600; 
-            font-size: 14px;
-        }
-        input, select { 
-            width: 100%; 
-            padding: 10px; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            box-sizing: border-box; 
-            font-family: inherit;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #ff4d4d;
-        }
-    </style>
+    <title>CES 35 - Fuentes de Coyle</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-    <div class="card" id="step1">
-        <h1>¿Querés salir conmigo?</h1>
-        <p>Tengo una propuesta que no podés rechazar...</p>
-        <div class="btn-container">
-            <button class="btn btn-yes" onclick="showStep2()">¡Sí, obvio!</button>
-            <button class="btn btn-no" id="btnNo">Mmm, no</button>
+    <header class="header">
+        <div class="header-content">
+            <h1>CES N° 35</h1>
+            <p class="subtitle">Fuentes de Coyle</p>
         </div>
-    </div>
+    </header>
 
-    <div class="card" id="step2">
-        <h1>¡Genial! Armemos el plan 🎉</h1>
-        <div class="form-group">
-            <label for="fecha">¿Qué día te queda bien?</label>
-            <input type="date" id="fecha" required>
-        </div>
-        <div class="form-group">
-            <label for="hora">¿A qué hora nos vemos?</label>
-            <input type="time" id="hora" required>
-        </div>
-        <div class="form-group">
-            <label for="plan">¿Qué hacemos por Río Gallegos?</label>
-            <select id="plan">
-                <option value="Pasear por la Ría y tomar unos mates">Pasear por la Ría y tomar unos mates</option>
-                <option value="Ir por unas buenas hamburguesas y papas">Ir por unas buenas hamburguesas y papas</option>
-                <option value="Jugar una partida de ajedrez en algún barcito">Jugar una partida de ajedrez en algún barcito</option>
-                <option value="Ir a tomar un café o un helado por el centro">Ir a tomar un café o un helado por el centro</option>
-            </select>
-        </div>
-        <button class="btn btn-yes" style="width: 100%; margin-top: 10px;" onclick="sendWhatsApp()">Confirmar cita ❤️</button>
-    </div>
+    <main class="container">
+        <section class="hero">
+            <h2>Portal Educativo</h2>
+            <p>Seleccioná un módulo para comenzar a gestionar las clases o acceder al material de práctica.</p>
+        </section>
 
-    <script>
-        const btnNo = document.getElementById('btnNo');
+        <section class="modulos-grid">
+            <article class="card" onclick="redirigir('asistencia.html')">
+                <div class="card-content">
+                    <h3>📋 Asistencia</h3>
+                    <p>Acceso al registro y control diario de los estudiantes.</p>
+                    <a href="asistencia.html" class="btn" onclick="event.stopPropagation()">Ver Asistencia</a>
+                </div>
+            </article>
 
-        // La broma del programador: el botón "No" huye del cursor
-        btnNo.addEventListener('mouseover', () => {
-            // Calculamos el espacio disponible evitando que el botón se salga de la pantalla
-            const maxX = window.innerWidth - btnNo.offsetWidth - 20;
-            const maxY = window.innerHeight - btnNo.offsetHeight - 20;
-            
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            
-            btnNo.style.position = 'fixed';
-            btnNo.style.left = randomX + 'px';
-            btnNo.style.top = randomY + 'px';
-        });
+            <article class="card" onclick="redirigir('tutorias.html')">
+                <div class="card-content">
+                    <h3>📚 Tutorías</h3>
+                    <p>Material de práctica, guías teóricas y contenidos de apoyo.</p>
+                    <a href="tutorias.html" class="btn" onclick="event.stopPropagation()">Ir a Tutorías</a>
+                </div>
+            </article>
+        </section>
+    </main>
 
-        function showStep2() {
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-        }
+    <footer class="footer">
+        <p>Sistema de Gestión Educativa - CES 35</p>
+    </footer>
 
-        function sendWhatsApp() {
-            const fecha = document.getElementById('fecha').value;
-            const hora = document.getElementById('hora').value;
-            const plan = document.getElementById('plan').value;
-
-            if(!fecha || !hora) {
-                alert("¡Completá la fecha y la hora para que la cita sea oficial!");
-                return;
-            }
-
-            // Formatear la fecha para que se lea mejor
-            const fechaFormateada = new Date(fecha + 'T00:00:00').toLocaleDateString('es-AR', {
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric'
-            });
-
-            // Armar el mensaje para WhatsApp (los %0A son saltos de línea)
-            const mensaje = `¡Hola! Acepto la cita. 🥰%0A%0A📅 Fecha: ${fechaFormateada}%0A⏰ Hora: ${hora} hs%0A📍 Plan: ${plan}%0A%0A¡Nos vemos!`;
-            
-            // Tu número con el código de país de Argentina (549)
-            const numero = "5493755594592"; 
-            const url = `https://wa.me/${numero}?text=${mensaje}`;
-            
-            // Redirigir a WhatsApp
-            window.open(url, '_blank');
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
