@@ -1,0 +1,77 @@
+/* Variables generales heredadas del index */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --background-color: #f4f7f6;
+    --text-color: #333333;
+    
+    /* Colores de Asistencia */
+    --color-gris: #bdc3c7;   /* Pendiente */
+    --color-verde: #2ecc71;  /* Confirmado */
+    --color-rojo: #e74c3c;   /* Ausente */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+
+body { background-color: var(--background-color); color: var(--text-color); }
+
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.btn-volver {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+
+.panel {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group { margin-top: 1rem; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.form-group input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+
+.btn { padding: 10px 20px; border: none; border-radius: 5px; color: white; font-weight: bold; cursor: pointer; }
+.btn { background-color: var(--primary-color); }
+.btn-verde { background-color: var(--color-verde); }
+.btn-rojo { background-color: var(--color-rojo); }
+.btn-gris { background-color: #7f8c8d; }
+
+.oculto { display: none; }
+.error-msg { color: var(--color-rojo); margin-top: 10px; font-size: 0.9rem; }
+
+/* Estilos de la Tabla */
+.table-responsive { overflow-x: auto; }
+.horario-table { width: 100%; border-collapse: collapse; background: white; text-align: center; }
+.horario-table th, .horario-table td { border: 1px solid #ddd; padding: 12px; }
+.horario-table th { background-color: var(--secondary-color); color: white; }
+
+/* Estados de las celdas */
+.estado-gris { background-color: #f2f4f4; border-left: 5px solid var(--color-gris) !important; }
+.estado-verde { background-color: #eafaf1; border-left: 5px solid var(--color-verde) !important; }
+.estado-rojo { background-color: #fdedec; border-left: 5px solid var(--color-rojo) !important; }
+
+.leyenda { text-align: center; margin-top: 1rem; font-weight: bold; color: #555; }
+.punto { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; }
+.punto.gris { background-color: var(--color-gris); }
+.punto.verde { background-color: var(--color-verde); }
+.punto.rojo { background-color: var(--color-rojo); }

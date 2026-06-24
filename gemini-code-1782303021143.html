@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia y Horarios - CES 35</title>
+    <link rel="stylesheet" href="asistencia.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>CES N° 35 - Asistencia</h1>
+            <p class="subtitle">Sede Fuentes del Coyle - Confirmación Docente</p>
+            <button onclick="window.location.href='index.html'" class="btn-volver">Volver al Inicio</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="login-section" class="panel">
+            <h2>Acceso Docente</h2>
+            <p>Ingresá tu DNI como usuario y contraseña para confirmar tu asistencia.</p>
+            <div class="form-group">
+                <input type="text" id="dni-input" placeholder="Usuario (DNI)">
+                <input type="password" id="pass-input" placeholder="Contraseña (DNI)">
+                <button onclick="iniciarSesion()" class="btn">Ingresar</button>
+            </div>
+            <p id="login-error" class="error-msg"></p>
+        </section>
+
+        <section id="control-section" class="panel oculto">
+            <h2>Bienvenido/a, <span id="nombre-docente"></span></h2>
+            <p>Por favor, confirmá tu asistencia para las clases de la semana:</p>
+            <div class="botones-estado">
+                <button onclick="cambiarEstado('confirmado')" class="btn btn-verde">Voy a asistir</button>
+                <button onclick="cambiarEstado('ausente')" class="btn btn-rojo">No voy a asistir</button>
+                <button onclick="cerrarSesion()" class="btn btn-gris">Cerrar Sesión</button>
+            </div>
+        </section>
+
+        <section class="horario-section">
+            <div class="table-responsive">
+                <table class="horario-table">
+                    <thead>
+                        <tr>
+                            <th>Horas</th>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>08:00 a 08:40</td>
+                            <td class="estado-gris" data-docente="Disaro">Inglés<br><small>Disaro</small></td>
+                            <td class="estado-gris" data-docente="Perea,González">Biología (Perea) / Agroturismo (González)</td>
+                            <td class="estado-gris" data-docente="Almada">Prob Ambiental<br><small>Almada</small></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10:00 a 10:40</td>
+                            <td class="estado-gris" data-docente="Camacho">Economía<br><small>Camacho</small></td>
+                            <td class="estado-gris" data-docente="González">Geografía<br><small>González</small></td>
+                            <td class="estado-gris" data-docente="Almada">Recursos Naturales<br><small>Almada</small></td>
+                            <td></td>
+                            <td class="estado-gris" data-docente="Argañaraz">Sist. Productivos I<br><small>Argañaraz</small></td>
+                        </tr>
+                        <tr>
+                            <td>13:00 a 13:40</td>
+                            <td class="estado-gris" data-docente="Urquia">Edu. Física<br><small>Urquía</small></td>
+                            <td></td>
+                            <td class="estado-gris" data-docente="Almada">Prob Ambiental<br><small>Almada</small></td>
+                            <td></td>
+                            <td class="estado-gris" data-docente="Decima,Castañeda">Física (Decima) / PSCS (Castañeda)</td>
+                        </tr>
+                        <tr>
+                            <td>13:40 a 14:20</td>
+                            <td class="estado-gris" data-docente="Urquia">Edu. Física<br><small>Urquía</small></td>
+                            <td class="estado-gris" data-docente="Chaile">Matemática / Ed Tec<br><small>Chaile / Varios</small></td>
+                            <td class="estado-gris" data-docente="Almada">Art Visuales / Sist Prod II<br><small>Almada</small></td>
+                            <td class="estado-gris" data-docente="Olas">Lengua y Lit.<br><small>Olas</small></td>
+                            <td class="estado-gris" data-docente="Decima,Castañeda">Física / PSCS</td>
+                        </tr>
+                        <tr>
+                            <td>15:00 a 15:40</td>
+                            <td class="estado-gris" data-docente="Leiva">Historia<br><small>Leiva</small></td>
+                            <td class="estado-gris" data-docente="Chaile">Matemática / Varios<br><small>Chaile</small></td>
+                            <td class="estado-gris" data-docente="Almada,Geronimo">Art Visuales / Música</td>
+                            <td class="estado-gris" data-docente="Olas">Lengua y Lit.<br><small>Olas</small></td>
+                            <td class="estado-gris" data-docente="Castañeda">Química / Pscs</td>
+                        </tr>
+                        <tr>
+                            <td>16:20 a 17:00</td>
+                            <td class="estado-gris" data-docente="Leiva">FEyC<br><small>Leiva</small></td>
+                            <td class="estado-gris" data-docente="Chaile">Matemática / IOAA<br><small>Chaile</small></td>
+                            <td class="estado-gris" data-docente="Geronimo">Música<br><small>Gerónimo</small></td>
+                            <td class="estado-gris" data-docente="Olas,Anadon">Lengua y Lit. / FEyC</td>
+                            <td class="estado-gris" data-docente="Castañeda">Química / Filosofía</td>
+                        </tr>
+                        <tr>
+                            <td>17:00 a 18:20</td>
+                            <td class="estado-gris" data-docente="Leiva">FEyC<br><small>Leiva</small></td>
+                            <td class="estado-gris">Inf Apl / IOAA</td>
+                            <td></td>
+                            <td class="estado-gris" data-docente="Anadon">FEyC<br><small>Anadon</small></td>
+                            <td class="estado-gris" data-docente="Castañeda">Filosofía<br><small>Castañeda</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="leyenda">
+                <span class="punto gris"></span> Sin confirmar (Pendiente) | 
+                <span class="punto verde"></span> Confirmado (Asiste) | 
+                <span class="punto rojo"></span> Ausente
+            </p>
+        </section>
+    </main>
+
+    <script src="asistencia.js"></script>
+</body>
+</html>
