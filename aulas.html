@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas y Materias - CES 35</title>
+    <link rel="stylesheet" href="aulas.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>CES N° 35 - Tutorías</h1>
+            <p class="subtitle">Material de estudio por materia y año</p>
+            <button onclick="window.location.href='index.html'" class="btn-volver">Volver al Inicio</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="seccion-materias">
+            <h2 class="section-title">Seleccioná una Materia</h2>
+            <div id="grid-materias" class="grid-container">
+                </div>
+        </section>
+
+        <section id="seccion-anios" class="oculto">
+            <button onclick="volverAMaterias()" class="btn btn-secundario mb-4">⬅ Volver a Materias</button>
+            <h2 class="section-title" id="titulo-materia-seleccionada">Materia</h2>
+            <p class="text-center mb-4">Seleccioná el año para ver el contenido:</p>
+            
+            <div id="grid-anios" class="grid-container">
+                </div>
+        </section>
+    </main>
+
+    <script src="aulas.js"></script>
+</body>
+</html>
