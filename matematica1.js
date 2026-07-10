@@ -1,122 +1,113 @@
-:root {
-    --primary-color: #2c3e50;
-    --secondary-color: #34495e;
-    --accent-color: #3498db;
-    --background-color: #f4f7f6;
-    --text-color: #333333;
-    --card-bg: #ffffff;
-    --danger-color: #e74c3c;
+// ============================================================================
+// CONFIGURACIÓN DE LECCIONES
+// Como desarrollador, solo tenés que agregar nuevos objetos a este Array.
+// ============================================================================
+
+const lecciones = [
+    {
+        id: "tema1",
+        eje: "Números y Operaciones",
+        titulo: "El surgimiento de los Números Enteros",
+        presentacion: "En esta primera lección vamos a repasar el conjunto de los números Naturales que viste en la primaria. Veremos que la resta no siempre es posible en los Naturales, lo que nos obliga a introducir un nuevo campo numérico: Los Números Enteros (Z). Prestá atención a cómo usamos el signo negativo (-) en situaciones de la vida real (temperaturas, deudas, ascensores).",
+        // Enlace de YouTube (Debe ser el enlace 'embed', no el link común del navegador)
+        videoUrl: "https://www.youtube.com/embed/a7RikjMInJk", 
+        // Enlace directo al archivo PDF (Puede ser de Google Drive, o un archivo local ej: 'apuntes/enteros.pdf')
+        pdfUrl: "apuntes_enteros.pdf",
+        activo: true // Te permite "apagar" una lección si aún la estás preparando
+    },
+    {
+        id: "tema2",
+        eje: "Números y Operaciones",
+        titulo: "Operaciones Básicas y Regla de los Signos",
+        presentacion: "Ahora que conocemos los números enteros, vamos a aprender a sumarlos, restarlos, multiplicarlos y dividirlos. El secreto está en dominar la famosa 'Regla de los Signos'. En el video te explico la estrategia para no confundirte al operar.",
+        videoUrl: "https://www.youtube.com/embed/EjX76P2MxyQ",
+        pdfUrl: "https://ejemplo.com/guia_signos.pdf",
+        activo: true
+    },
+    {
+        id: "tema3",
+        eje: "Álgebra y Funciones",
+        titulo: "Introducción a las Ecuaciones",
+        presentacion: "Pasamos del mundo aritmético al algebraico. Una ecuación es como una balanza en equilibrio donde tenemos que descubrir el valor de una incógnita (generalmente llamada X). Mirá la clase audiovisual y luego practicá con la guía.",
+        videoUrl: "", // Si dejás esto vacío, el reproductor de video se ocultará automáticamente
+        pdfUrl: "archivos/ecuaciones_1.pdf",
+        activo: true
+    }
+];
+
+// ============================================================================
+// LÓGICA DE LA APLICACIÓN (No hace falta tocar esto)
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarListaLecciones();
+});
+
+// Genera el menú principal de temas basado en el array de arriba
+function renderizarListaLecciones() {
+    const contenedor = document.getElementById('grid-temas');
+    contenedor.innerHTML = ""; 
+
+    lecciones.forEach(leccion => {
+        if (!leccion.activo) return; // Salta las lecciones marcadas como inhabilitadas
+
+        const card = document.createElement('article');
+        card.className = 'card-tema';
+        card.onclick = () => abrirLeccion(leccion.id);
+
+        card.innerHTML = `
+            <span class="eje-tag">${leccion.eje}</span>
+            <h3>${leccion.titulo}</h3>
+            <p>Acceder a la clase, teoría y práctica.</p>
+        `;
+        contenedor.appendChild(card);
+    });
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+// Carga los datos de la lección seleccionada y muestra el reproductor
+function abrirLeccion(idLeccion) {
+    // Buscar la lección en la "base de datos"
+    const leccion = lecciones.find(l => l.id === idLeccion);
+    if (!leccion) return;
 
-body { background-color: var(--background-color); color: var(--text-color); min-height: 100vh; }
+    // Inyectar textos
+    document.getElementById('lec-eje').innerText = leccion.eje;
+    document.getElementById('lec-titulo').innerText = leccion.titulo;
+    document.getElementById('lec-presentacion').innerText = leccion.presentacion;
 
-/* Cabecera */
-.header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    // Gestionar el Video
+    const contenedorVideo = document.getElementById('contenedor-video');
+    const iframeVideo = document.getElementById('lec-video');
+    if (leccion.videoUrl && leccion.videoUrl.trim() !== "") {
+        iframeVideo.src = leccion.videoUrl;
+        contenedorVideo.style.display = "block";
+    } else {
+        iframeVideo.src = "";
+        contenedorVideo.style.display = "none"; // Oculta la sección si no configuraste video
+    }
+
+    // Gestionar el PDF
+    const contenedorPdf = document.getElementById('contenedor-pdf');
+    const botonPdf = document.getElementById('lec-pdf');
+    if (leccion.pdfUrl && leccion.pdfUrl.trim() !== "") {
+        botonPdf.href = leccion.pdfUrl;
+        contenedorPdf.style.display = "block";
+    } else {
+        botonPdf.href = "#";
+        contenedorPdf.style.display = "none"; // Oculta la sección si no hay PDF
+    }
+
+    // Cambiar las vistas
+    document.getElementById('lista-lecciones').classList.add('oculto');
+    document.getElementById('vista-leccion').classList.remove('oculto');
+    window.scrollTo(0, 0); // Sube al tope de la página
 }
 
-.btn-volver, .btn-volver-leccion {
-    background-color: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
-}
+// Vuelve al listado de temas
+function cerrarLeccion() {
+    // Cortar el video al salir para que no siga sonando de fondo
+    document.getElementById('lec-video').src = ""; 
 
-.btn-volver { position: absolute; top: 1.5rem; left: 1.5rem; }
-.btn-volver-leccion { background-color: var(--secondary-color); color: white; margin-bottom: 1.5rem; display: inline-block; }
-.btn-volver:hover, .btn-volver-leccion:hover { background-color: var(--accent-color); }
-
-.container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-.section-title { text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; }
-.text-center { text-align: center; }
-.instruccion { color: #7f8c8d; margin-bottom: 2rem; font-size: 0.95rem; }
-
-/* Grilla de Temas */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.card-tema {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    cursor: pointer;
-    border-top: 4px solid var(--accent-color);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-tema:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
-.card-tema .eje-tag { font-size: 0.8rem; color: var(--accent-color); font-weight: bold; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
-.card-tema h3 { color: var(--secondary-color); font-size: 1.2rem; margin-bottom: 0.5rem; }
-.card-tema p { color: #666; font-size: 0.9rem; }
-
-/* Reproductor de Lección */
-.leccion-container {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    overflow: hidden;
-}
-
-.leccion-header { background-color: var(--primary-color); padding: 1.5rem; color: white; }
-.leccion-eje { font-size: 0.85rem; color: #bdc3c7; text-transform: uppercase; letter-spacing: 1px; }
-.leccion-header h2 { font-size: 1.8rem; margin-top: 0.5rem; }
-
-.seccion-contenido { padding: 1.5rem; border-bottom: 1px solid #eee; }
-.seccion-contenido:last-child { border-bottom: none; }
-.seccion-contenido h3 { color: var(--secondary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
-.seccion-contenido p { line-height: 1.6; color: #444; }
-
-/* Contenedor de Video Responsivo (Mantiene 16:9) */
-.video-responsive {
-    position: relative;
-    padding-bottom: 56.25%; /* Ratio 16:9 */
-    height: 0;
-    overflow: hidden;
-    border-radius: 8px;
-    background-color: #000;
-}
-.video-responsive iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* Botón Descarga PDF */
-.btn-descarga {
-    display: inline-block;
-    background-color: var(--danger-color);
-    color: white;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 1rem;
-    transition: background-color 0.3s;
-}
-.btn-descarga:hover { background-color: #c0392b; }
-
-.oculto { display: none !important; }
-
-/* Responsive Móvil */
-@media (max-width: 600px) {
-    .btn-volver { position: static; display: block; margin: 0 auto 1rem auto; width: fit-content; }
-    .header { padding: 1rem; }
-    .leccion-header h2 { font-size: 1.4rem; }
+    document.getElementById('vista-leccion').classList.add('oculto');
+    document.getElementById('lista-lecciones').classList.remove('oculto');
 }
