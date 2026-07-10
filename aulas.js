@@ -1,38 +1,32 @@
-// Capturamos los elementos (tarjetas) por su ID definido en el HTML
-const btnPrimerAnio = document.getElementById('btn-1-anio');
-const btnSegundoAnio = document.getElementById('btn-2-anio');
-const btnTercerAnio = document.getElementById('btn-3-anio');
-const btnCuartoAnio = document.getElementById('btn-4-anio');
-const btnQuintoAnio = document.getElementById('btn-5-anio');
+// Reemplazá esta función en tu aulas.js
+function mostrarAnios(claveMateria) {
+    const materiaElegida = baseMaterias[claveMateria];
+    
+    document.getElementById('titulo-materia-seleccionada').innerText = materiaElegida.nombre;
+    
+    const contenedorAnios = document.getElementById('grid-anios');
+    contenedorAnios.innerHTML = "";
 
-// CORRECCIÓN: Acción para 1° Año (Redirige a la página de temas)
-if (btnPrimerAnio) {
-    btnPrimerAnio.addEventListener('click', () => {
-        window.location.href = 'temas_ingles1año.html';
+    materiaElegida.anios.forEach(anio => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        card.onclick = () => {
+            // Verificamos si es Inglés de 1° Año para redirigir a temas.html
+            if (claveMateria === "ingles" && anio === "1° Año") {
+                window.location.href = 'temas.html';
+            } else {
+                alert(`Próximamente: Contenido de ${materiaElegida.nombre} para ${anio}`);
+            }
+        };
+        
+        card.innerHTML = `
+            <h3>${anio}</h3>
+            <p>Acceder a los contenidos</p>
+        `;
+        contenedorAnios.appendChild(card);
     });
-}
 
-// Acciones provisionales para los demás años (Muestran la alerta)
-if (btnSegundoAnio) {
-    btnSegundoAnio.addEventListener('click', () => {
-        alert('Próximamente: Contenido de Inglés para 2° Año');
-    });
-}
-
-if (btnTercerAnio) {
-    btnTercerAnio.addEventListener('click', () => {
-        alert('Próximamente: Contenido de Inglés para 3° Año');
-    });
-}
-
-if (btnCuartoAnio) {
-    btnCuartoAnio.addEventListener('click', () => {
-        alert('Próximamente: Contenido de Inglés para 4° Año');
-    });
-}
-
-if (btnQuintoAnio) {
-    btnQuintoAnio.addEventListener('click', () => {
-        alert('Próximamente: Contenido de Inglés para 5° Año');
-    });
+    document.getElementById('seccion-materias').classList.add('oculto');
+    document.getElementById('seccion-anios').classList.remove('oculto');
 }
