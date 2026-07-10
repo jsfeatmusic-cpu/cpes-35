@@ -15,11 +15,11 @@ const baseMaterias = {
         nombre: "Matemáticas",
         descripcion: "Álgebra, geometría y análisis.",
         anios: [
-            { nombreAnio: "1° Año", archivo: "matematicas1.html" },
-            { nombreAnio: "2° Año", archivo: "matematicas2.html" },
-            { nombreAnio: "3° Año", archivo: "matematicas3.html" },
-            { nombreAnio: "4° Año", archivo: "matematicas4.html" },
-            { nombreAnio: "5° Año", archivo: "matematicas5.html" }
+            { nombreAnio: "1° Año", archivo: "matematica1.html" },
+            { nombreAnio: "2° Año", archivo: "matematica2.html" },
+            { nombreAnio: "3° Año", archivo: "matematica3.html" },
+            { nombreAnio: "4° Año", archivo: "matematica4.html" },
+            { nombreAnio: "5° Año", archivo: "matematica5.html" }
         ]
     },
     "economia": {
