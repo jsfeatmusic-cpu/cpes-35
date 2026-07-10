@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática 1° Año - CPES 35</title>
+    <link rel="stylesheet" href="matematica.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Matemática</h1>
+            <p class="subtitle">1° Año - Ciclo Básico | CPES N° 35</p>
+            <button onclick="window.location.href='aulas.html'" class="btn-volver">Volver a Aulas</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <p class="instruccion text-center">Tocá cada eje para desplegar u ocultar los contenidos curriculares.</p>
+
+        <!-- Eje 1 -->
+        <article class="eje-card">
+            <div class="eje-header" onclick="toggleSeccion('eje1')">
+                <h2>Eje: Números y Operaciones</h2>
+                <span class="icono-desplegar">▼</span>
+            </div>
+            <div id="eje1" class="eje-content oculto">
+                <ul>
+                    <li>Reconocimiento de propiedades y operaciones posibles en el conjunto de los números Naturales. Surgimiento de números enteros a partir de la resta de naturales[cite: 2].</li>
+                    <li>El signo (-). Información que brinda según el contexto en el que se aplique[cite: 2].</li>
+                    <li>Generalización de propiedades y reglas que rigen las operaciones con enteros[cite: 2].</li>
+                    <li>Representación y comparación de números enteros en diferentes contextos: como número relativo y/o como resta entre dos números naturales. Comparación y distancia entre números enteros[cite: 2].</li>
+                    <li>Interpretación de números racionales a partir de la división de enteros. El número racional como operador y como expresión numérica[cite: 2].</li>
+                    <li>Reconocimiento de discretitud y densidad en los conjuntos numéricos N, Z y Q[cite: 2].</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Eje 2 -->
+        <article class="eje-card">
+            <div class="eje-header" onclick="toggleSeccion('eje2')">
+                <h2>Eje: Álgebra y Funciones</h2>
+                <span class="icono-desplegar">▼</span>
+            </div>
+            <div id="eje2" class="eje-content oculto">
+                <ul>
+                    <li>Interpretación y producción de relaciones, tanto discretas como continuas, en los distintos registros (coloquial, gráfico, algebraico, geométrico y otros)[cite: 2].</li>
+                    <li>Producción de expresiones algebraicas en situaciones de generalización de propiedades y patrones numéricos[cite: 2].</li>
+                    <li>Formulación y validación de conjeturas, a partir de la exploración de regularidades numéricas y geométricas[cite: 2].</li>
+                    <li>Comparación de expresiones algebraicas para determinar su equivalencia[cite: 2].</li>
+                    <li>Análisis y aplicación de variabilidad y dependencia en relaciones funcionales[cite: 2].</li>
+                    <li>Modelización de variaciones que evidencien situaciones de crecimiento y decrecimiento uniforme[cite: 2].</li>
+                    <li>Observación de aspectos significativos en funciones lineales (crecimiento, decrecimiento, intersección con los ejes)[cite: 2].</li>
+                    <li>Interpretación de gráficos cartesianos que representen situaciones contextualizadas[cite: 2].</li>
+                    <li>Formulación y resolución de ecuaciones e inecuaciones lineales con una incógnita[cite: 2].</li>
+                    <li>Comunicación de información a través de gráficos en función de los aspectos significativos[cite: 2].</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Eje 3 -->
+        <article class="eje-card">
+            <div class="eje-header" onclick="toggleSeccion('eje3')">
+                <h2>Eje: Geometría y Medida</h2>
+                <span class="icono-desplegar">▼</span>
+            </div>
+            <div id="eje3" class="eje-content oculto">
+                <ul>
+                    <li>Representación de puntos que cumplan condiciones referidas a distancias y construcción de circunferencias, círculos, mediatrices y bisectrices como lugares geométricos[cite: 2].</li>
+                    <li>Elaboración de conjeturas para la determinación de criterios de congruencia y validación a partir de propiedades geométricas[cite: 2].</li>
+                    <li>Construcción de figuras planas. Justificación de construcciones geométricas a partir de la aplicación de propiedades[cite: 2].</li>
+                    <li>Exploración y validación del teorema de Pitágoras[cite: 2].</li>
+                    <li>Formulación de conjeturas sobre relaciones entre ángulos de figuras planas y producción de argumentos de validación a partir de propiedades angulares[cite: 2].</li>
+                    <li>Cálculo de perímetro de figuras planas. Elaboración de posibles fórmulas aplicables al cálculo de perímetros de figuras regulares[cite: 2].</li>
+                    <li>Cálculo de áreas. Conjeturas sobre fórmulas para el cálculo de áreas de figuras planas regulares. Triangulación de figuras. Área total como suma de áreas parciales[cite: 2].</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Eje 4 -->
+        <article class="eje-card">
+            <div class="eje-header" onclick="toggleSeccion('eje4')">
+                <h2>Eje: Probabilidad y Estadística</h2>
+                <span class="icono-desplegar">▼</span>
+            </div>
+            <div id="eje4" class="eje-content oculto">
+                <ul>
+                    <li>Identificación de tipos de variables involucrados en espacios muestrales[cite: 2].</li>
+                    <li>Construcción de tablas de frecuencia y gráficos estadísticos utilizando los recursos tecnológicos disponibles[cite: 2].</li>
+                    <li>Reconocimiento de las medidas de tendencia central que caracteriza determinada muestra (media aritmética, moda y mediana)[cite: 2].</li>
+                    <li>Elaboración de estrategias de conteo para el análisis de sucesos aleatorios[cite: 2].</li>
+                    <li>Análisis e interpretación de la probabilidad como medida de la incertidumbre de un suceso[cite: 2].</li>
+                    <li>Asignación de probabilidad a un suceso[cite: 2].</li>
+                </ul>
+            </div>
+        </article>
+    </main>
+
+    <script src="matematica.js"></script>
+</body>
+</html>
