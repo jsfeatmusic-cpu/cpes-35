@@ -29,4 +29,26 @@ function mostrarAnios(claveMateria) {
 
     document.getElementById('seccion-materias').classList.add('oculto');
     document.getElementById('seccion-anios').classList.remove('oculto');
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const cardPrimerAnio = document.getElementById('card-primer-anio');
+    const temasPrimerAnio = document.getElementById('temas-primer-anio');
+
+    // Evento para computadoras (Mouse)
+    cardPrimerAnio.addEventListener('dblclick', () => {
+        temasPrimerAnio.classList.toggle('oculto');
+    });
+
+    // Evento adaptado para Celulares (Pantallas Táctiles)
+    let ultimoToque = 0;
+    cardPrimerAnio.addEventListener('touchstart', (e) => {
+        const tiempoActual = new Date().getTime();
+        const diferencia = tiempoActual - ultimoToque;
+        
+        // Si el usuario toca la pantalla dos veces en menos de 300ms, cuenta como doble clic
+        if (diferencia < 300 && diferencia > 0) {
+            temasPrimerAnio.classList.toggle('oculto');
+            e.preventDefault(); // Previene el zoom automático del navegador en celulares
+        }
+        ultimoToque = tiempoActual;
+    });
+});}
