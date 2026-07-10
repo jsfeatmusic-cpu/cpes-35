@@ -1,111 +1,91 @@
-/* =========================================
-   Reset básico para estandarizar márgenes
-========================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --background-color: #f4f7f6;
+    --text-color: #333333;
+    --card-bg: #ffffff;
 }
 
-body {
-    background-color: #f8fafc; /* Fondo gris/azulado muy claro */
-    color: #333;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
 
-/* =========================================
-   Encabezado (Barra superior oscura)
-========================================= */
-.encabezamiento {
-    background-color: #1e293b; /* Color oscuro para el menú superior */
-    padding: 15px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+body { background-color: var(--background-color); color: var(--text-color); min-height: 100vh; }
 
-.contenido-encabezado {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* Botón de volver a materias */
-.voltereta-de-boton {
-    background-color: #334155;
-    color: #f1f5f9;
-    border: 1px solid #475569;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.voltereta-de-boton:hover {
-    background-color: #475569;
-    border-color: #94a3b8;
-}
-
-/* =========================================
-   Contenido Principal
-========================================= */
-.container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 0 20px;
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
     text-align: center;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #334155;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.subtitular {
-    font-size: 1.1rem;
-    color: #64748b;
-    margin-bottom: 40px;
-}
-
-/* =========================================
-   Grilla de Tarjetas (Años)
-========================================= */
-.grid-aulas {
-    display: grid;
-    /* Crea columnas que se adaptan al tamaño de la pantalla */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    justify-content: center;
-}
-
-/* Diseño individual de cada tarjeta */
-.card-anio {
-    background-color: transparent;
-    border: 2px solid #cbd5e1; /* Borde sutil por defecto */
-    border-radius: 12px;
-    padding: 35px 20px;
+.btn-volver {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+
+.text-center { text-align: center; }
+.instruccion { color: #7f8c8d; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+/* Tarjeta del Año */
+.card-anio {
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    user-select: none; /* Evita selección de texto en celulares al hacer doble toque */
+    touch-action: manipulation; /* Mejora la respuesta táctil en móviles */
+}
+
+.card-anio h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+/* Contenedor de Temas Oculto */
+.temas-container {
+    background-color: var(--card-bg);
+    border-radius: 0 0 10px 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: -5px; 
+    border-top: none;
     transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el mouse por encima (Hover) */
-.card-anio:hover {
-    border-color: #3b82f6; /* El borde se vuelve azul */
-    background-color: #eff6ff; /* El fondo se vuelve un celeste muy clarito */
-    transform: translateY(-4px); /* La tarjeta "sube" un poquito */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Sombra suave */
+.seccion-tema { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+.seccion-tema:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.seccion-tema h3 { color: var(--secondary-color); margin-bottom: 1rem; font-size: 1.2rem; }
+
+.seccion-tema ul { list-style-type: none; padding-left: 0.5rem; }
+.seccion-tema li { margin-bottom: 0.8rem; line-height: 1.5; color: #555; position: relative; padding-left: 1.5rem; }
+.seccion-tema li::before {
+    content: "•";
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
 }
 
-.card-anio h2 {
-    font-size: 1.5rem;
-    color: #1e293b;
-    margin-bottom: 8px;
-}
+.oculto { display: none !important; }
 
-.card-anio p {
-    font-size: 0.95rem;
-    color: #64748b;
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .btn-volver { position: static; display: block; margin: 0 auto 1rem auto; }
+    .header { padding: 1rem; }
+    .card-anio h2 { font-size: 1.5rem; }
 }
