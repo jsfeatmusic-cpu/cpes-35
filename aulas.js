@@ -57,6 +57,7 @@ function renderizarMaterias() {
 }
 
 // Oculta las materias y muestra los años de la materia elegida
+// Oculta las materias y muestra los años de la materia elegida
 function mostrarAnios(claveMateria) {
     const materiaElegida = baseMaterias[claveMateria];
     
@@ -71,8 +72,16 @@ function mostrarAnios(claveMateria) {
         const card = document.createElement('div');
         card.className = 'card';
         
-        // Acá programaríamos a dónde lleva cada año en el futuro
-        card.onclick = () => alert(`Próximamente: Contenido de ${materiaElegida.nombre} para ${anio}`);
+        // Lógica de redirección
+        card.onclick = () => {
+            if (claveMateria === "ingles" && anio === "1° Año") {
+                // Si es Inglés de 1° Año, vamos al archivo nuevo
+                window.location.href = 'temas_ingles.html';
+            } else {
+                // Para el resto que aún no tiene página
+                alert(`Próximamente: Contenido de ${materiaElegida.nombre} para ${anio}`);
+            }
+        };
         
         card.innerHTML = `
             <h3>${anio}</h3>
