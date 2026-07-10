@@ -3,99 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática 1° Año - CPES 35</title>
-    <link rel="stylesheet" href="matematica1.css">
+    <title>Matemática 1° Año - Lecciones</title>
+    <link rel="stylesheet" href="matematica.css">
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <h1>Matemática</h1>
-            <p class="subtitle">1° Año - Ciclo Básico | CPES N° 35</p>
+            <p class="subtitle">1° Año - Aula Virtual</p>
             <button onclick="window.location.href='aulas.html'" class="btn-volver">Volver a Aulas</button>
         </div>
     </header>
 
     <main class="container">
-        <p class="instruccion text-center">Tocá cada eje para desplegar u ocultar los contenidos curriculares.</p>
+        <!-- VISTA 1: Lista de Temas / Lecciones -->
+        <section id="lista-lecciones">
+            <h2 class="section-title">Temario de Estudio</h2>
+            <p class="instruccion text-center">Seleccioná una lección para acceder a la teoría, videos y apuntes.</p>
+            <div id="grid-temas" class="grid-container">
+                <!-- Las tarjetas de las lecciones se inyectan acá desde el JS -->
+            </div>
+        </section>
 
-        <!-- Eje 1 -->
-        <article class="eje-card">
-            <div class="eje-header" onclick="toggleSeccion('eje1')">
-                <h2>Eje: Números y Operaciones</h2>
-                <span class="icono-desplegar">▼</span>
-            </div>
-            <div id="eje1" class="eje-content oculto">
-                <ul>
-                    <li>Reconocimiento de propiedades y operaciones posibles en el conjunto de los números Naturales. Surgimiento de números enteros a partir de la resta de naturales[cite: 2].</li>
-                    <li>El signo (-). Información que brinda según el contexto en el que se aplique[cite: 2].</li>
-                    <li>Generalización de propiedades y reglas que rigen las operaciones con enteros[cite: 2].</li>
-                    <li>Representación y comparación de números enteros en diferentes contextos: como número relativo y/o como resta entre dos números naturales. Comparación y distancia entre números enteros[cite: 2].</li>
-                    <li>Interpretación de números racionales a partir de la división de enteros. El número racional como operador y como expresión numérica[cite: 2].</li>
-                    <li>Reconocimiento de discretitud y densidad en los conjuntos numéricos N, Z y Q[cite: 2].</li>
-                </ul>
-            </div>
-        </article>
+        <!-- VISTA 2: Reproductor de la Lección (Oculto al inicio) -->
+        <section id="vista-leccion" class="oculto">
+            <button onclick="cerrarLeccion()" class="btn-volver-leccion">⬅ Volver al Temario</button>
+            
+            <article class="leccion-container">
+                <header class="leccion-header">
+                    <span class="leccion-eje" id="lec-eje">Eje Temático</span>
+                    <h2 id="lec-titulo">Título de la Lección</h2>
+                </header>
 
-        <!-- Eje 2 -->
-        <article class="eje-card">
-            <div class="eje-header" onclick="toggleSeccion('eje2')">
-                <h2>Eje: Álgebra y Funciones</h2>
-                <span class="icono-desplegar">▼</span>
-            </div>
-            <div id="eje2" class="eje-content oculto">
-                <ul>
-                    <li>Interpretación y producción de relaciones, tanto discretas como continuas, en los distintos registros (coloquial, gráfico, algebraico, geométrico y otros)[cite: 2].</li>
-                    <li>Producción de expresiones algebraicas en situaciones de generalización de propiedades y patrones numéricos[cite: 2].</li>
-                    <li>Formulación y validación de conjeturas, a partir de la exploración de regularidades numéricas y geométricas[cite: 2].</li>
-                    <li>Comparación de expresiones algebraicas para determinar su equivalencia[cite: 2].</li>
-                    <li>Análisis y aplicación de variabilidad y dependencia en relaciones funcionales[cite: 2].</li>
-                    <li>Modelización de variaciones que evidencien situaciones de crecimiento y decrecimiento uniforme[cite: 2].</li>
-                    <li>Observación de aspectos significativos en funciones lineales (crecimiento, decrecimiento, intersección con los ejes)[cite: 2].</li>
-                    <li>Interpretación de gráficos cartesianos que representen situaciones contextualizadas[cite: 2].</li>
-                    <li>Formulación y resolución de ecuaciones e inecuaciones lineales con una incógnita[cite: 2].</li>
-                    <li>Comunicación de información a través de gráficos en función de los aspectos significativos[cite: 2].</li>
-                </ul>
-            </div>
-        </article>
+                <!-- 1. Presentación del Tema -->
+                <div class="seccion-contenido">
+                    <h3>📖 Presentación del Tema</h3>
+                    <p id="lec-presentacion">Texto explicativo de la lección...</p>
+                </div>
 
-        <!-- Eje 3 -->
-        <article class="eje-card">
-            <div class="eje-header" onclick="toggleSeccion('eje3')">
-                <h2>Eje: Geometría y Medida</h2>
-                <span class="icono-desplegar">▼</span>
-            </div>
-            <div id="eje3" class="eje-content oculto">
-                <ul>
-                    <li>Representación de puntos que cumplan condiciones referidas a distancias y construcción de circunferencias, círculos, mediatrices y bisectrices como lugares geométricos[cite: 2].</li>
-                    <li>Elaboración de conjeturas para la determinación de criterios de congruencia y validación a partir de propiedades geométricas[cite: 2].</li>
-                    <li>Construcción de figuras planas. Justificación de construcciones geométricas a partir de la aplicación de propiedades[cite: 2].</li>
-                    <li>Exploración y validación del teorema de Pitágoras[cite: 2].</li>
-                    <li>Formulación de conjeturas sobre relaciones entre ángulos de figuras planas y producción de argumentos de validación a partir de propiedades angulares[cite: 2].</li>
-                    <li>Cálculo de perímetro de figuras planas. Elaboración de posibles fórmulas aplicables al cálculo de perímetros de figuras regulares[cite: 2].</li>
-                    <li>Cálculo de áreas. Conjeturas sobre fórmulas para el cálculo de áreas de figuras planas regulares. Triangulación de figuras. Área total como suma de áreas parciales[cite: 2].</li>
-                </ul>
-            </div>
-        </article>
+                <!-- 2. Clase Audiovisual (Video) -->
+                <div class="seccion-contenido" id="contenedor-video">
+                    <h3>🎥 Clase Audiovisual</h3>
+                    <div class="video-responsive">
+                        <!-- El iframe del video se inyecta acá -->
+                        <iframe id="lec-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
 
-        <!-- Eje 4 -->
-        <article class="eje-card">
-            <div class="eje-header" onclick="toggleSeccion('eje4')">
-                <h2>Eje: Probabilidad y Estadística</h2>
-                <span class="icono-desplegar">▼</span>
-            </div>
-            <div id="eje4" class="eje-content oculto">
-                <ul>
-                    <li>Identificación de tipos de variables involucrados en espacios muestrales[cite: 2].</li>
-                    <li>Construcción de tablas de frecuencia y gráficos estadísticos utilizando los recursos tecnológicos disponibles[cite: 2].</li>
-                    <li>Reconocimiento de las medidas de tendencia central que caracteriza determinada muestra (media aritmética, moda y mediana)[cite: 2].</li>
-                    <li>Elaboración de estrategias de conteo para el análisis de sucesos aleatorios[cite: 2].</li>
-                    <li>Análisis e interpretación de la probabilidad como medida de la incertidumbre de un suceso[cite: 2].</li>
-                    <li>Asignación de probabilidad a un suceso[cite: 2].</li>
-                </ul>
-            </div>
-        </article>
+                <!-- 3. Material de Apoyo (PDF) -->
+                <div class="seccion-contenido text-center" id="contenedor-pdf">
+                    <h3>📚 Material de Apoyo</h3>
+                    <p>Descargá la guía teórica y los ejercicios prácticos.</p>
+                    <a href="#" id="lec-pdf" class="btn-descarga" target="_blank" rel="noopener noreferrer">
+                        📄 Descargar PDF
+                    </a>
+                </div>
+            </article>
+        </section>
     </main>
 
-    <script src="matematica1.js"></script>
+    <script src="matematica.js"></script>
 </body>
 </html>
