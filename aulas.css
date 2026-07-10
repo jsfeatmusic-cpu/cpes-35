@@ -30,62 +30,61 @@ body { background-color: var(--background-color); color: var(--text-color); min-
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9rem;
+    transition: background-color 0.3s;
 }
 
-.container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+.btn-volver:hover { background-color: rgba(255,255,255,0.4); }
 
+.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+
+.section-title { text-align: center; color: var(--primary-color); margin-bottom: 2rem; font-size: 1.8rem; }
 .text-center { text-align: center; }
-.instruccion { color: #7f8c8d; margin-bottom: 1.5rem; font-size: 0.95rem; }
+.mb-4 { margin-bottom: 1.5rem; }
 
-/* Tarjeta del Año */
-.card-anio {
-    background-color: var(--accent-color);
-    color: white;
+/* Grilla Responsiva Basada en Ajuste Automático */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     cursor: pointer;
-    user-select: none; /* Evita selección de texto en celulares al hacer doble toque */
-    touch-action: manipulation; /* Mejora la respuesta táctil en móviles */
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    touch-action: manipulation; /* Optimiza el toque en móviles */
 }
 
-.card-anio h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-
-/* Contenedor de Temas Oculto */
-.temas-container {
-    background-color: var(--card-bg);
-    border-radius: 0 0 10px 10px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    margin-top: -5px; 
-    border-top: none;
-    transition: all 0.3s ease;
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-.seccion-tema { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
-.seccion-tema:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.card h3 { color: var(--secondary-color); font-size: 1.25rem; margin-bottom: 0.5rem; }
+.card p { color: #7f8c8d; font-size: 0.9rem; }
 
-.seccion-tema h3 { color: var(--secondary-color); margin-bottom: 1rem; font-size: 1.2rem; }
-
-.seccion-tema ul { list-style-type: none; padding-left: 0.5rem; }
-.seccion-tema li { margin-bottom: 0.8rem; line-height: 1.5; color: #555; position: relative; padding-left: 1.5rem; }
-.seccion-tema li::before {
-    content: "•";
-    color: var(--accent-color);
-    font-weight: bold;
-    font-size: 1.2rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
+.btn-secundario {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .oculto { display: none !important; }
 
-/* Ajustes para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .btn-volver { position: static; display: block; margin: 0 auto 1rem auto; }
-    .header { padding: 1rem; }
-    .card-anio h2 { font-size: 1.5rem; }
+/* Ajustes específicos para Celulares */
+@media (max-width: 600px) {
+    .header { padding: 1.2rem 1rem; }
+    .btn-volver { position: static; display: block; margin: 0 auto 1rem auto; width: fit-content; }
+    .section-title { font-size: 1.5rem; }
+    .grid-container { grid-template-columns: 1fr; gap: 1rem; } /* Tarjetas a pantalla completa */
 }
