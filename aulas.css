@@ -1,82 +1,111 @@
-:root {
-    --primary-color: #2c3e50;
-    --secondary-color: #34495e;
-    --accent-color: #3498db;
-    --background-color: #f4f7f6;
-    --text-color: #333333;
-    --card-bg: #ffffff;
+/* =========================================
+   Reset básico para estandarizar márgenes
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-
-body { background-color: var(--background-color); color: var(--text-color); min-height: 100vh; }
-
-.header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+body {
+    background-color: #f8fafc; /* Fondo gris/azulado muy claro */
+    color: #333;
 }
 
-.btn-volver {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    background-color: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
+/* =========================================
+   Encabezado (Barra superior oscura)
+========================================= */
+.encabezamiento {
+    background-color: #1e293b; /* Color oscuro para el menú superior */
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contenido-encabezado {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Botón de volver a materias */
+.voltereta-de-boton {
+    background-color: #334155;
+    color: #f1f5f9;
+    border: 1px solid #475569;
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-volver:hover { background-color: rgba(255,255,255,0.4); }
-
-.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-
-.section-title { text-align: center; color: var(--primary-color); margin-bottom: 2rem; font-size: 2rem; }
-.text-center { text-align: center; }
-.mb-4 { margin-bottom: 1.5rem; }
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.card {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    cursor: pointer;
-    border: 2px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
     transition: all 0.3s ease;
 }
 
-.card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent-color);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+.voltereta-de-boton:hover {
+    background-color: #475569;
+    border-color: #94a3b8;
 }
 
-.card h3 { color: var(--secondary-color); font-size: 1.3rem; margin-bottom: 0.5rem; }
-.card p { color: #7f8c8d; font-size: 0.9rem; }
+/* =========================================
+   Contenido Principal
+========================================= */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+    text-align: center;
+}
 
-.btn-secundario {
-    background-color: #7f8c8d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+h1 {
+    font-size: 2.5rem;
+    color: #334155;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.subtitular {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 40px;
+}
+
+/* =========================================
+   Grilla de Tarjetas (Años)
+========================================= */
+.grid-aulas {
+    display: grid;
+    /* Crea columnas que se adaptan al tamaño de la pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Diseño individual de cada tarjeta */
+.card-anio {
+    background-color: transparent;
+    border: 2px solid #cbd5e1; /* Borde sutil por defecto */
+    border-radius: 12px;
+    padding: 35px 20px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
 }
-.btn-secundario:hover { background-color: #95a5a6; }
 
-.oculto { display: none !important; }
+/* Efecto al pasar el mouse por encima (Hover) */
+.card-anio:hover {
+    border-color: #3b82f6; /* El borde se vuelve azul */
+    background-color: #eff6ff; /* El fondo se vuelve un celeste muy clarito */
+    transform: translateY(-4px); /* La tarjeta "sube" un poquito */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.card-anio h2 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.card-anio p {
+    font-size: 0.95rem;
+    color: #64748b;
+}
