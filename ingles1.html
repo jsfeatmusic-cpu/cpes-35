@@ -3,57 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inglés - Temario CPES 35</title>
+    <title>Inglés 1° Año - Lecciones</title>
     <link rel="stylesheet" href="ingles1.css">
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <h1>Inglés</h1>
-            <p class="subtitle">Programa de Estudio - CES N° 35</p>
+            <p class="subtitle">1° Año - Aula Virtual | CPES N° 35</p>
             <button onclick="window.location.href='aulas.html'" class="btn-volver">Volver a Aulas</button>
         </div>
     </header>
 
     <main class="container">
-        <p class="instruccion text-center">Hacé <strong>doble clic</strong> (o doble toque) en el año para ver u ocultar los temas.</p>
+        <section id="lista-lecciones">
+            <h2 class="section-title">Temario de Estudio</h2>
+            <p class="instruccion text-center">Seleccioná una lección para acceder a la teoría, videos explicativos y apuntes.</p>
+            <div id="grid-temas" class="grid-container">
+                </div>
+        </section>
 
-        <article class="card-anio" id="card-primer-anio">
-            <h2>1° Año</h2>
-            <p>Nivel Básico</p>
-        </article>
-
-        <section id="temas-primer-anio" class="temas-container oculto">
+        <section id="vista-leccion" class="oculto">
+            <button onclick="cerrarLeccion()" class="btn-volver-leccion">⬅ Volver al Temario</button>
             
-            <div class="seccion-tema">
-                <h3>Sección Primera</h3>
-                <ul>
-                    <li><strong>Los artículos:</strong> Determinados (como <em>the</em>) e indeterminados (como <em>a / an</em>).</li>
-                    <li><strong>Las preposiciones:</strong> Preposiciones de tiempo y lugar (como <em>in, on, at</em>), así como de lugar y movimiento (como <em>opposite, between, next to</em>).</li>
-                    <li><strong>Vocabulario:</strong> Los colores.</li>
-                </ul>
-            </div>
+            <article class="leccion-container">
+                <header class="leccion-header">
+                    <span class="leccion-eje" id="lec-eje">Eje Temático</span>
+                    <h2 id="lec-titulo">Título de la Lección</h2>
+                </header>
 
-            <div class="seccion-tema">
-                <h3>Sección Segunda</h3>
-                <ul>
-                    <li><strong>Los pronombres personales:</strong> Incluyendo pronombres de sujeto, de objeto, adjetivos y pronombres posesivos, y reflexivos.</li>
-                    <li><strong>Los números:</strong> Cardinales (uno, dos, tres...) y ordinales (primero, segundo, tercero...).</li>
-                    <li><strong>Los sustantivos:</strong> Reglas gramaticales para formar plurales regulares e irregulares.</li>
-                    <li><strong>Vocabulario:</strong> Saludos, despedidas, presentaciones y términos para describir a las personas.</li>
-                </ul>
-            </div>
+                <div class="seccion-contenido">
+                    <h3>📖 Presentación de la Lección</h3>
+                    <p id="lec-presentacion">Texto explicativo de la lección...</p>
+                </div>
 
-            <div class="seccion-tema">
-                <h3>Sección Tercera y Gramática Adicional</h3>
-                <ul>
-                    <li><strong>Conjugación de verbos fundamentales:</strong> <em>To be</em> (ser o estar), <em>to have</em> (tener o haber) y <em>to do</em> (hacer).</li>
-                    <li><strong>Tiempos verbales:</strong> El presente simple y el presente continuo.</li>
-                    <li><strong>Formas cortas (contracciones):</strong> Uso en el lenguaje coloquial con verbos y pronombres.</li>
-                    <li><strong>Vocabulario:</strong> La familia.</li>
-                </ul>
-            </div>
+                <div class="seccion-contenido" id="contenedor-video">
+                    <h3>🎥 Clase Audiovisual</h3>
+                    <div class="video-responsive">
+                        <iframe id="lec-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
 
+                <div class="seccion-contenido text-center" id="contenedor-pdf">
+                    <h3>📚 Material de Práctica</h3>
+                    <p>Descargá la guía teórica y los ejercicios interactivos de la clase.</p>
+                    <a href="#" id="lec-pdf" class="btn-descarga" target="_blank" rel="noopener noreferrer">
+                        📄 Descargar Guía (PDF)
+                    </a>
+                </div>
+            </article>
         </section>
     </main>
 
