@@ -10,7 +10,7 @@ const lecciones = [
         titulo: "El surgimiento de los Números Enteros",
         presentacion: "En esta primera lección vamos a repasar el conjunto de los números Naturales que viste en la primaria. Veremos que la resta no siempre es posible en los Naturales, lo que nos obliga a introducir un nuevo campo numérico: Los Números Enteros (Z). Prestá atención a cómo usamos el signo negativo (-) en situaciones de la vida real (temperaturas, deudas, ascensores).",
         // Enlace de YouTube (Debe ser el enlace 'embed', no el link común del navegador)
-        videoUrl: "https://youtu.be/xOMxUAMeKtk", 
+        videoUrl: "<iframe width="560" height="315" src="https://www.youtube.com/embed/xOMxUAMeKtk?si=jEXozSCH0ebHfbsa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>", 
         // Enlace directo al archivo PDF (Puede ser de Google Drive, o un archivo local ej: 'apuntes/enteros.pdf')
         pdfUrl: "apuntes_enteros.pdf",
         activo: true // Te permite "apagar" una lección si aún la estás preparando
