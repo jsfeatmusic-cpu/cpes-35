@@ -7,7 +7,7 @@ const lecciones = [
     {
         id: "tema1",
         eje: "Sección 1: Identidad e Información Personal",
-        titulo: "Pronombres Personales y Verbo 'To Be'",
+        titulo: "Pronombres Personales y    Verbo 'To Be'",
         presentacion: "En esta lección comenzaremos con la base de la comunicación en inglés. Aprenderemos a utilizar los pronombres personales (I, you, he, she...) y a conjugarlos con el verbo fundamental: el verbo 'To Be' (ser o estar). Veremos cómo armar oraciones afirmativas, negativas e interrogativas para presentarnos, dar nuestra edad y describir a las personas de nuestro entorno.",
         videoUrl: "https://www.youtube.com/embed/EjemploVideo1", 
         pdfUrl: "apuntes_tobe.pdf",
